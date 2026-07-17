@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recap — Privacy Policy</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #172B4D; }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.15em; margin-top: 1.8em; }
+  .updated { color: #6B778C; font-size: 0.9em; }
+  code { background: #F4F5F7; padding: 0.1em 0.4em; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h1>Recap — Privacy Policy</h1>
+<p class="updated">Last updated: 17 July 2026</p>
+
+<p>
+Recap is a Jira Cloud app built on Atlassian Forge. This policy explains what data Recap
+accesses and, just as importantly, what it does not do with it.
+</p>
+
+<h2>What Recap accesses</h2>
+<p>
+When you click "Generate my report," Recap reads Jira issues assigned to you that entered a
+"Done" status in the last 30 days, using the single permission scope <code>read:jira-work</code>.
+It reads only the fields needed to build your report: issue key, summary, parent (epic) key
+and summary, project key and name, and the resolution/status-change date. Recap acts as you,
+the requesting user — it can never see or report on issues you could not already see yourself.
+</p>
+
+<h2>What Recap stores</h2>
+<p>
+Nothing. Recap has no database and uses none of Forge's storage services. All processing
+happens in memory for the duration of a single click, and the generated report is returned
+directly to your browser. Recap keeps no record of your reports, your issues, or your account
+after the request completes.
+</p>
+
+<h2>Where your data goes</h2>
+<p>
+Nowhere outside Atlassian. Recap runs entirely on Atlassian Forge. Report text is generated
+using Atlassian's own Forge LLMs API (Atlassian-hosted AI models) — prompts are processed
+within Atlassian's platform. Recap makes no calls to any third-party service, uses no external
+analytics, and has no servers of its own.
+</p>
+
+<h2>Data retention and deletion</h2>
+<p>
+Since Recap stores nothing, there is nothing to retain or delete. Uninstalling Recap leaves no
+residual data behind, because none was ever kept.
+</p>
+
+<h2>Contact</h2>
+<p>
+Questions about this policy or Recap's data handling can be sent to
+<a href="mailto:isogun21@gmail.com">isogun21@gmail.com</a>.
+</p>
+
+</body>
+</html>
