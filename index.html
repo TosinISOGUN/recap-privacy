@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recap — Monthly Status Reports for Jira · Support</title>
+<meta name="description" content="Support and help for Recap, the Jira Cloud app that turns your completed work into a written monthly status report in one click.">
+<style>
+  :root {
+    --amber: #B45309;
+    --amber-light: #D97706;
+    --ink: #1F2937;
+    --muted: #6B7280;
+    --line: #E5E7EB;
+    --bg: #FFFFFF;
+    --panel: #FBF7F2;
+    --green: #15803D;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  header {
+    background: linear-gradient(135deg, var(--amber-light), #92400E);
+    color: #fff;
+    padding: 56px 0 48px;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand svg { width: 56px; height: 56px; border-radius: 14px; flex: none; }
+  .brand h1 { font-size: 1.35rem; margin: 0; font-weight: 700; }
+  .brand p { margin: 2px 0 0; opacity: 0.9; font-size: 0.9rem; }
+  .tagline { font-size: 1.5rem; font-weight: 700; margin: 28px 0 0; max-width: 620px; }
+  main { padding: 48px 0 24px; }
+  h2 { font-size: 1.25rem; margin: 40px 0 12px; }
+  h2:first-child { margin-top: 0; }
+  section { border-top: 1px solid var(--line); padding-top: 28px; margin-top: 28px; }
+  section:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+  ol.steps { padding-left: 0; list-style: none; counter-reset: step; }
+  ol.steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 12px 0 12px 52px;
+    border-bottom: 1px solid var(--line);
+  }
+  ol.steps li:last-child { border-bottom: 0; }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 12px;
+    width: 34px; height: 34px;
+    background: var(--panel); color: var(--amber);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-weight: 700;
+  }
+  .faq { margin-top: 8px; }
+  .faq h3 { font-size: 1rem; margin: 22px 0 4px; }
+  .faq p { margin: 0 0 4px; color: var(--ink); }
+  .contact {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 12px;
+  }
+  .contact a { color: var(--amber); font-weight: 600; text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  .pill {
+    display: inline-block; font-size: 0.8rem; font-weight: 600;
+    color: var(--green); background: #E7F4EC; border-radius: 999px;
+    padding: 3px 12px; margin-bottom: 12px;
+  }
+  footer {
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 28px 0 48px;
+    margin-top: 40px;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FDE7C7"/><stop offset="1" stop-color="#F5C892"/>
+          </linearGradient>
+        </defs>
+        <rect width="512" height="512" rx="96" fill="#FFFFFF"/>
+        <path d="M146,96 H330 L366,132 V396 H146 Z" fill="#B45309"/>
+        <path d="M330,96 L366,132 H330 Z" fill="#7C3A08"/>
+        <rect x="174" y="186" width="164" height="18" rx="9" fill="#FDE7C7"/>
+        <rect x="174" y="228" width="164" height="18" rx="9" fill="#E8C39E"/>
+        <rect x="174" y="270" width="100" height="18" rx="9" fill="#E8C39E"/>
+        <circle cx="360" cy="390" r="52" fill="#15803D" stroke="#FFFFFF" stroke-width="10"/>
+        <polyline points="336,392 354,410 388,368" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h1>Recap</h1>
+        <p>Monthly Status Reports for Jira</p>
+      </div>
+    </div>
+    <p class="tagline">Turn completed Jira work into a written status update. One click. No chasing, no nagging, no blank-page Monday.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <span class="pill">Runs on Atlassian</span>
+    <h2>What Recap does</h2>
+    <p>
+      Recap reads the Jira issues assigned to you that were completed in the last 30 days,
+      groups them by epic (or project), and writes a short, plain-language status report you can
+      paste straight into a status update, a 1:1 doc, or a performance review. No invented
+      metrics, no filler — just an honest summary of what actually shipped, in words.
+    </p>
+    <p>
+      It runs entirely on Atlassian Forge. The report is written using Atlassian's own AI, so
+      your data never leaves the Atlassian platform, and Recap stores nothing.
+    </p>
+  </section>
+
+  <section>
+    <h2>How to use it</h2>
+    <ol class="steps">
+      <li>In Jira, open <strong>Apps</strong> in the top navigation and select <strong>Recap</strong>.</li>
+      <li>Click <strong>Generate my report</strong>.</li>
+      <li>Your report appears in a text box. Click into it, select all, and copy — edit anything first if you like.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <h3>Which work does Recap include?</h3>
+      <p>Issues assigned to you that moved to a “Done” status in the last 30 days. The window is fixed at 30 days.</p>
+
+      <h3>It says “Nothing completed in the last 30 days.”</h3>
+      <p>That means no issues assigned to you reached a Done status in that window. Recap won’t invent a report — complete some work and generate again.</p>
+
+      <h3>It showed a “Basic report” notice.</h3>
+      <p>If the AI writer is momentarily unavailable, Recap falls back to a plain summary of your completed work so you’re never left empty-handed. Try again in a moment for the written version.</p>
+
+      <h3>Why does it group work under a project name instead of an epic?</h3>
+      <p>Issues that aren’t linked to an epic (no parent) are grouped under their project instead, so nothing is dropped.</p>
+
+      <h3>What data does Recap access or store?</h3>
+      <p>It reads only your completed issues’ titles, epic/project, and completion date, using a single read-only permission — and it stores nothing. See the <a href="privacy.html">privacy policy</a> for detail.</p>
+
+      <h3>How do I copy the report?</h3>
+      <p>Click inside the report box, press Ctrl/Cmd&nbsp;+&nbsp;A to select all, then Ctrl/Cmd&nbsp;+&nbsp;C to copy.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Get support</h2>
+    <div class="contact">
+      <p style="margin-top:0">Questions, problems, or feedback? Email us:</p>
+      <p><a href="mailto:isogun21@gmail.com">isogun21@gmail.com</a></p>
+      <p style="margin-bottom:0; color:var(--muted); font-size:0.9rem">Best-effort support. Typical response time: 1–2 business days.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Recap — Monthly Status Reports for Jira · <a href="privacy.html">Privacy policy</a><br>
+    An independent Atlassian Marketplace app. Not affiliated with or endorsed by Atlassian.
+  </div>
+</footer>
+
+</body>
+</html>
