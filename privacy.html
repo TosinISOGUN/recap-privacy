@@ -4,60 +4,152 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Recap — Privacy Policy</title>
+<meta name="description" content="Privacy policy for Recap, the Jira Cloud app. Recap stores nothing and runs entirely on Atlassian Forge.">
 <style>
-  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #172B4D; }
-  h1 { font-size: 1.6em; }
-  h2 { font-size: 1.15em; margin-top: 1.8em; }
-  .updated { color: #6B778C; font-size: 0.9em; }
-  code { background: #F4F5F7; padding: 0.1em 0.4em; border-radius: 3px; }
+  :root {
+    --amber: #B45309;
+    --amber-light: #D97706;
+    --ink: #1F2937;
+    --muted: #6B7280;
+    --line: #E5E7EB;
+    --bg: #FFFFFF;
+    --panel: #FBF7F2;
+    --green: #15803D;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  header {
+    background: linear-gradient(135deg, var(--amber-light), #92400E);
+    color: #fff;
+    padding: 48px 0 40px;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand svg { width: 56px; height: 56px; border-radius: 14px; flex: none; }
+  .brand h1 { font-size: 1.35rem; margin: 0; font-weight: 700; }
+  .brand p { margin: 2px 0 0; opacity: 0.9; font-size: 0.9rem; }
+  .page-title { font-size: 1.9rem; font-weight: 700; margin: 26px 0 4px; }
+  .updated { opacity: 0.9; font-size: 0.9rem; }
+  main { padding: 44px 0 24px; }
+  .lead { font-size: 1.05rem; }
+  section { border-top: 1px solid var(--line); padding-top: 24px; margin-top: 24px; }
+  h2 { font-size: 1.2rem; margin: 0 0 8px; }
+  .pill {
+    display: inline-block; font-size: 0.8rem; font-weight: 600;
+    color: var(--green); background: #E7F4EC; border-radius: 999px;
+    padding: 3px 12px; margin-bottom: 16px;
+  }
+  a { color: var(--amber); font-weight: 600; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.9em;
+  }
+  footer {
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.85rem;
+    padding: 28px 0 48px;
+    margin-top: 40px;
+  }
+  footer a { color: var(--muted); }
 </style>
 </head>
 <body>
 
-<h1>Recap — Privacy Policy</h1>
-<p class="updated">Last updated: 17 July 2026</p>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="512" height="512" rx="96" fill="#FFFFFF"/>
+        <path d="M146,96 H330 L366,132 V396 H146 Z" fill="#B45309"/>
+        <path d="M330,96 L366,132 H330 Z" fill="#7C3A08"/>
+        <rect x="174" y="186" width="164" height="18" rx="9" fill="#FDE7C7"/>
+        <rect x="174" y="228" width="164" height="18" rx="9" fill="#E8C39E"/>
+        <rect x="174" y="270" width="100" height="18" rx="9" fill="#E8C39E"/>
+        <circle cx="360" cy="390" r="52" fill="#15803D" stroke="#FFFFFF" stroke-width="10"/>
+        <polyline points="336,392 354,410 388,368" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h1>Recap</h1>
+        <p>Monthly Status Reports for Jira</p>
+      </div>
+    </div>
+    <div class="page-title">Privacy Policy</div>
+    <div class="updated">Last updated: 17 July 2026</div>
+  </div>
+</header>
 
-<p>
-Recap is a Jira Cloud app built on Atlassian Forge. This policy explains what data Recap
-accesses and, just as importantly, what it does not do with it.
-</p>
+<main class="wrap">
 
-<h2>What Recap accesses</h2>
-<p>
-When you click "Generate my report," Recap reads Jira issues assigned to you that entered a
-"Done" status in the last 30 days, using the single permission scope <code>read:jira-work</code>.
-It reads only the fields needed to build your report: issue key, summary, parent (epic) key
-and summary, project key and name, and the resolution/status-change date. Recap acts as you,
-the requesting user — it can never see or report on issues you could not already see yourself.
-</p>
+  <span class="pill">Runs on Atlassian · Stores nothing</span>
+  <p class="lead">
+    Recap is a Jira Cloud app built on Atlassian Forge. This policy explains what data Recap
+    accesses and, just as importantly, what it does not do with it.
+  </p>
 
-<h2>What Recap stores</h2>
-<p>
-Nothing. Recap has no database and uses none of Forge's storage services. All processing
-happens in memory for the duration of a single click, and the generated report is returned
-directly to your browser. Recap keeps no record of your reports, your issues, or your account
-after the request completes.
-</p>
+  <section>
+    <h2>What Recap accesses</h2>
+    <p>
+      When you click “Generate my report,” Recap reads Jira issues assigned to you that entered
+      a “Done” status in the last 30 days, using the single permission scope
+      <code>read:jira-work</code>. It reads only the fields needed to build your report: issue
+      key, summary, parent (epic) key and summary, project key and name, and the
+      resolution/status-change date. Recap acts as you, the requesting user — it can never see
+      or report on issues you could not already see yourself.
+    </p>
+  </section>
 
-<h2>Where your data goes</h2>
-<p>
-Nowhere outside Atlassian. Recap runs entirely on Atlassian Forge. Report text is generated
-using Atlassian's own Forge LLMs API (Atlassian-hosted AI models) — prompts are processed
-within Atlassian's platform. Recap makes no calls to any third-party service, uses no external
-analytics, and has no servers of its own.
-</p>
+  <section>
+    <h2>What Recap stores</h2>
+    <p>
+      Nothing. Recap has no database and uses none of Forge’s storage services. All processing
+      happens in memory for the duration of a single click, and the generated report is returned
+      directly to your browser. Recap keeps no record of your reports, your issues, or your
+      account after the request completes.
+    </p>
+  </section>
 
-<h2>Data retention and deletion</h2>
-<p>
-Since Recap stores nothing, there is nothing to retain or delete. Uninstalling Recap leaves no
-residual data behind, because none was ever kept.
-</p>
+  <section>
+    <h2>Where your data goes</h2>
+    <p>
+      Nowhere outside Atlassian. Recap runs entirely on Atlassian Forge. Report text is
+      generated using Atlassian’s own Forge LLMs API (Atlassian-hosted AI models) — prompts are
+      processed within Atlassian’s platform. Recap makes no calls to any third-party service,
+      uses no external analytics, and has no servers of its own.
+    </p>
+  </section>
 
-<h2>Contact</h2>
-<p>
-Questions about this policy or Recap's data handling can be sent to
-<a href="mailto:isogun21@gmail.com">isogun21@gmail.com</a>.
-</p>
+  <section>
+    <h2>Data retention and deletion</h2>
+    <p>
+      Since Recap stores nothing, there is nothing to retain or delete. Uninstalling Recap
+      leaves no residual data behind, because none was ever kept.
+    </p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>
+      Questions about this policy or Recap’s data handling can be sent to
+      <a href="mailto:isogun21@gmail.com">isogun21@gmail.com</a>.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Recap — Monthly Status Reports for Jira · <a href="index.html">Home &amp; support</a><br>
+    An independent Atlassian Marketplace app. Not affiliated with or endorsed by Atlassian.
+  </div>
+</footer>
 
 </body>
 </html>
