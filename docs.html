@@ -15,8 +15,11 @@
     --bg: #FFFFFF;
     --panel: #FBF7F2;
     --green: #15803D;
+    --sidebar-w: 260px;
+    --header-h: 132px;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -24,32 +27,59 @@
     background: var(--bg);
     line-height: 1.65;
   }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+  a { color: var(--amber); }
+
+  /* Top brand header */
   header {
     background: linear-gradient(135deg, var(--amber-light), #92400E);
     color: #fff;
-    padding: 44px 0 36px;
+    padding: 26px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
   }
-  .brand { display: flex; align-items: center; gap: 16px; }
-  .brand svg { width: 52px; height: 52px; border-radius: 13px; flex: none; }
-  .brand h1 { font-size: 1.3rem; margin: 0; font-weight: 700; }
-  .brand p { margin: 2px 0 0; opacity: 0.9; font-size: 0.9rem; }
-  .page-title { font-size: 1.9rem; font-weight: 700; margin: 22px 0 2px; }
-  .nav { margin-top: 14px; font-size: 0.9rem; }
-  .nav a { color: #fff; opacity: 0.92; text-decoration: none; margin-right: 18px; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px; }
-  .nav a:hover { opacity: 1; }
-  main { padding: 40px 0 24px; }
-  .toc {
-    background: var(--panel); border: 1px solid var(--line);
-    border-radius: 12px; padding: 18px 22px; margin-bottom: 36px;
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand svg { width: 46px; height: 46px; border-radius: 12px; flex: none; }
+  .brand h1 { font-size: 1.2rem; margin: 0; font-weight: 700; }
+  .brand p { margin: 1px 0 0; opacity: 0.9; font-size: 0.85rem; }
+  .topnav a {
+    color: #fff; opacity: 0.92; text-decoration: none; margin-left: 20px;
+    font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px;
   }
-  .toc h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0 0 10px; }
-  .toc ol { margin: 0; padding-left: 20px; }
-  .toc a { color: var(--amber); text-decoration: none; }
-  .toc a:hover { text-decoration: underline; }
-  section { border-top: 1px solid var(--line); padding-top: 26px; margin-top: 34px; }
-  section:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
-  h2.sec { font-size: 1.35rem; margin: 0 0 12px; scroll-margin-top: 20px; }
+  .topnav a:hover { opacity: 1; }
+
+  /* Layout */
+  .layout { display: flex; align-items: flex-start; max-width: 1160px; margin: 0 auto; }
+
+  /* Sidebar */
+  aside {
+    width: var(--sidebar-w); flex: none;
+    position: sticky; top: 0; align-self: flex-start;
+    height: 100vh; overflow-y: auto;
+    border-right: 1px solid var(--line);
+    padding: 32px 20px 40px;
+  }
+  aside .side-title {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 700;
+  }
+  aside nav a {
+    display: block; padding: 7px 12px; margin: 2px 0;
+    color: var(--ink); text-decoration: none; font-size: 0.92rem;
+    border-radius: 7px; border-left: 3px solid transparent;
+  }
+  aside nav a:hover { background: var(--panel); }
+  aside nav a.active {
+    background: var(--panel); color: var(--amber);
+    font-weight: 600; border-left-color: var(--amber);
+  }
+
+  /* Content */
+  main { flex: 1 1 auto; min-width: 0; padding: 40px 40px 60px; max-width: 780px; }
+  .page-title { font-size: 2rem; font-weight: 700; margin: 0 0 6px; }
+  .lede { color: var(--muted); margin: 0 0 8px; }
+  section { border-top: 1px solid var(--line); padding-top: 28px; margin-top: 36px; }
+  section:first-of-type { border-top: 0; padding-top: 0; margin-top: 28px; }
+  h2.sec { font-size: 1.4rem; margin: 0 0 12px; scroll-margin-top: 20px; }
   h3 { font-size: 1.05rem; margin: 22px 0 4px; }
   code {
     background: var(--panel); border: 1px solid var(--line);
@@ -83,249 +113,286 @@
   }
   footer {
     border-top: 1px solid var(--line); color: var(--muted);
-    font-size: 0.85rem; padding: 28px 0 48px; margin-top: 40px;
+    font-size: 0.85rem; padding: 24px 40px 48px; max-width: 1160px; margin: 0 auto;
   }
   footer a { color: var(--muted); }
+
+  /* Responsive: stack sidebar on top for narrow screens */
+  @media (max-width: 820px) {
+    header { padding: 22px 20px; }
+    .layout { display: block; }
+    aside {
+      width: auto; position: static; height: auto;
+      border-right: 0; border-bottom: 1px solid var(--line);
+      padding: 16px 20px;
+    }
+    aside nav { display: flex; flex-wrap: wrap; gap: 4px; }
+    aside nav a { border-left: 0; padding: 6px 10px; }
+    aside nav a.active { border-left: 0; }
+    main { padding: 28px 20px 48px; }
+    footer { padding: 24px 20px 48px; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap">
-    <div class="brand">
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect width="512" height="512" rx="96" fill="#FFFFFF"/>
-        <path d="M146,96 H330 L366,132 V396 H146 Z" fill="#B45309"/>
-        <path d="M330,96 L366,132 H330 Z" fill="#7C3A08"/>
-        <rect x="174" y="186" width="164" height="18" rx="9" fill="#FDE7C7"/>
-        <rect x="174" y="228" width="164" height="18" rx="9" fill="#E8C39E"/>
-        <rect x="174" y="270" width="100" height="18" rx="9" fill="#E8C39E"/>
-        <circle cx="360" cy="390" r="52" fill="#15803D" stroke="#FFFFFF" stroke-width="10"/>
-        <polyline points="336,392 354,410 388,368" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div>
-        <h1>Recap</h1>
-        <p>Monthly Status Reports for Jira</p>
-      </div>
+  <div class="brand">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="512" height="512" rx="96" fill="#FFFFFF"/>
+      <path d="M146,96 H330 L366,132 V396 H146 Z" fill="#B45309"/>
+      <path d="M330,96 L366,132 H330 Z" fill="#7C3A08"/>
+      <rect x="174" y="186" width="164" height="18" rx="9" fill="#FDE7C7"/>
+      <rect x="174" y="228" width="164" height="18" rx="9" fill="#E8C39E"/>
+      <rect x="174" y="270" width="100" height="18" rx="9" fill="#E8C39E"/>
+      <circle cx="360" cy="390" r="52" fill="#15803D" stroke="#FFFFFF" stroke-width="10"/>
+      <polyline points="336,392 354,410 388,368" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <h1>Recap</h1>
+      <p>Monthly Status Reports for Jira</p>
     </div>
-    <div class="page-title">Documentation</div>
-    <div class="nav">
-      <a href="index.html">Home</a>
-      <a href="docs.html">Documentation</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
+  </div>
+  <div class="topnav">
+    <a href="index.html">Home</a>
+    <a href="docs.html">Documentation</a>
+    <a href="privacy.html">Privacy</a>
   </div>
 </header>
 
-<main class="wrap">
+<div class="layout">
 
-  <div class="toc">
-    <h2>On this page</h2>
-    <ol>
-      <li><a href="#overview">Overview</a></li>
-      <li><a href="#requirements">Requirements</a></li>
-      <li><a href="#install">Installation</a></li>
-      <li><a href="#usage">Generating a report</a></li>
-      <li><a href="#how">How the report is built</a></li>
-      <li><a href="#states">Screen states explained</a></li>
-      <li><a href="#copy">Copying your report</a></li>
-      <li><a href="#data">Data &amp; permissions</a></li>
-      <li><a href="#licensing">Licensing &amp; billing</a></li>
-      <li><a href="#troubleshooting">Troubleshooting</a></li>
-      <li><a href="#versions">Version history</a></li>
-      <li><a href="#support">Support</a></li>
-    </ol>
-  </div>
+  <aside>
+    <p class="side-title">Documentation</p>
+    <nav id="sidenav">
+      <a href="#overview">Overview</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#install">Installation</a>
+      <a href="#usage">Generating a report</a>
+      <a href="#how">How the report is built</a>
+      <a href="#states">Screen states</a>
+      <a href="#copy">Copying your report</a>
+      <a href="#data">Data &amp; permissions</a>
+      <a href="#licensing">Licensing &amp; billing</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#versions">Version history</a>
+      <a href="#support">Support</a>
+    </nav>
+  </aside>
 
-  <section id="overview">
-    <h2 class="sec">Overview</h2>
-    <p>
-      Recap turns the work you have already completed in Jira into a written monthly status
-      report. You open one screen, click a button, and Recap produces a few short paragraphs —
-      grouped by epic — that you can paste into a status update, a 1:1 document, or a
-      performance review. It is built entirely on Atlassian Forge, stores nothing, and sends no
-      data to third parties.
-    </p>
-  </section>
+  <main>
+    <div class="page-title">Documentation</div>
+    <p class="lede">Everything you need to install, use, and troubleshoot Recap.</p>
 
-  <section id="requirements">
-    <h2 class="sec">Requirements</h2>
-    <ul>
-      <li>A <strong>Jira Cloud</strong> site (Recap does not support Server or Data Center).</li>
-      <li>Jira issues assigned to you that have reached a <strong>Done</strong> status in the last 30 days — this is the work Recap reports on.</li>
-      <li>An active Recap subscription (a free trial is available from the Marketplace). See <a class="inline" href="#licensing">Licensing &amp; billing</a>.</li>
-    </ul>
-  </section>
+    <section id="overview">
+      <h2 class="sec">Overview</h2>
+      <p>
+        Recap turns the work you have already completed in Jira into a written monthly status
+        report. You open one screen, click a button, and Recap produces a few short paragraphs —
+        grouped by epic — that you can paste into a status update, a 1:1 document, or a
+        performance review. It is built entirely on Atlassian Forge, stores nothing, and sends no
+        data to third parties.
+      </p>
+    </section>
 
-  <section id="install">
-    <h2 class="sec">Installation</h2>
-    <p>
-      Recap is installed by a Jira site administrator from the Atlassian Marketplace:
-    </p>
-    <ol class="steps">
-      <li>On the Recap Marketplace listing, click <strong>Try it free</strong> (or <strong>Get it now</strong>).</li>
-      <li>Choose the Jira site to install onto and confirm. Recap requests a single read-only permission, <code>read:jira-work</code>.</li>
-      <li>Once installed, Recap appears for all users under <strong>Apps</strong> in the Jira top navigation.</li>
-    </ol>
-    <div class="note">
-      Recap needs no configuration after install — there are no settings, date pickers, or
-      admin screens to set up. Any licensed user can open it and generate a report.
-    </div>
-  </section>
+    <section id="requirements">
+      <h2 class="sec">Requirements</h2>
+      <ul>
+        <li>A <strong>Jira Cloud</strong> site (Recap does not support Server or Data Center).</li>
+        <li>Jira issues assigned to you that have reached a <strong>Done</strong> status in the last 30 days — this is the work Recap reports on.</li>
+        <li>An active Recap subscription (a free trial is available from the Marketplace). See <a class="inline" href="#licensing">Licensing &amp; billing</a>.</li>
+      </ul>
+    </section>
 
-  <section id="usage">
-    <h2 class="sec">Generating a report</h2>
-    <ol class="steps">
-      <li>In Jira, open <strong>Apps</strong> in the top navigation and select <strong>Recap</strong>.</li>
-      <li>Click <strong>Generate my report</strong>. Recap gathers your completed work and writes it up — this usually takes a few seconds.</li>
-      <li>Read the report in the text box. Edit it if you like, then select all and copy (see <a class="inline" href="#copy">Copying your report</a>).</li>
-      <li>Need a fresh version? Click <strong>Regenerate</strong> at any time.</li>
-    </ol>
-  </section>
+    <section id="install">
+      <h2 class="sec">Installation</h2>
+      <p>Recap is installed by a Jira site administrator from the Atlassian Marketplace:</p>
+      <ol class="steps">
+        <li>On the Recap Marketplace listing, click <strong>Try it free</strong> (or <strong>Get it now</strong>).</li>
+        <li>Choose the Jira site to install onto and confirm. Recap requests a single read-only permission, <code>read:jira-work</code>.</li>
+        <li>Once installed, Recap appears for all users under <strong>Apps</strong> in the Jira top navigation.</li>
+      </ol>
+      <div class="note">
+        Recap needs no configuration after install — there are no settings, date pickers, or
+        admin screens to set up. Any licensed user can open it and generate a report.
+      </div>
+    </section>
 
-  <section id="how">
-    <h2 class="sec">How the report is built</h2>
-    <p>Recap follows the same steps every time you click Generate:</p>
+    <section id="usage">
+      <h2 class="sec">Generating a report</h2>
+      <ol class="steps">
+        <li>In Jira, open <strong>Apps</strong> in the top navigation and select <strong>Recap</strong>.</li>
+        <li>Click <strong>Generate my report</strong>. Recap gathers your completed work and writes it up — this usually takes a few seconds.</li>
+        <li>Read the report in the text box. Edit it if you like, then select all and copy (see <a class="inline" href="#copy">Copying your report</a>).</li>
+        <li>Need a fresh version? Click <strong>Regenerate</strong> at any time.</li>
+      </ol>
+    </section>
 
-    <h3>1. It finds your recently completed work</h3>
-    <p>
-      Recap looks for issues assigned to you that moved into a <strong>Done</strong> status
-      category within the last 30 days. The 30-day window is fixed. Conceptually, the query is:
-    </p>
-    <pre><code>assignee = currentUser()
+    <section id="how">
+      <h2 class="sec">How the report is built</h2>
+      <p>Recap follows the same steps every time you click Generate:</p>
+
+      <h3>1. It finds your recently completed work</h3>
+      <p>
+        Recap looks for issues assigned to you that moved into a <strong>Done</strong> status
+        category within the last 30 days. The 30-day window is fixed. Conceptually, the query is:
+      </p>
+      <pre><code>assignee = currentUser()
 AND statusCategory = Done
 AND statuscategorychangedate &gt;= -30d</code></pre>
-    <p>
-      Recap reads only the fields it needs — issue key, summary, parent (epic), project, and
-      completion date — and it pages through every matching issue, so a busy month with
-      hundreds of completed issues is handled correctly.
-    </p>
+      <p>
+        Recap reads only the fields it needs — issue key, summary, parent (epic), project, and
+        completion date — and it pages through every matching issue, so a busy month with
+        hundreds of completed issues is handled correctly.
+      </p>
 
-    <h3>2. It groups the work by epic</h3>
-    <p>
-      Each issue is grouped under its <strong>epic</strong> (the issue's parent). Issues that
-      are not part of an epic fall back to being grouped under their <strong>project</strong>,
-      so nothing is left out. Groups are ordered with the largest first, and within a group the
-      most recently completed work comes first.
-    </p>
+      <h3>2. It groups the work by epic</h3>
+      <p>
+        Each issue is grouped under its <strong>epic</strong> (the issue's parent). Issues that
+        are not part of an epic fall back to being grouped under their <strong>project</strong>,
+        so nothing is left out. Groups are ordered with the largest first, and within a group the
+        most recently completed work comes first.
+      </p>
 
-    <h3>3. It writes the report</h3>
-    <p>
-      The grouped work is turned into plain, past-tense prose using Atlassian's built-in AI
-      (Forge LLMs). The writing is deliberately factual: it summarises what the issue titles
-      say and nothing more. Recap does not invent metrics, dates, or achievements that are not
-      present in your Jira data.
-    </p>
-  </section>
+      <h3>3. It writes the report</h3>
+      <p>
+        The grouped work is turned into plain, past-tense prose using Atlassian's built-in AI
+        (Forge LLMs). The writing is deliberately factual: it summarises what the issue titles
+        say and nothing more. Recap does not invent metrics, dates, or achievements that are not
+        present in your Jira data.
+      </p>
+    </section>
 
-  <section id="states">
-    <h2 class="sec">Screen states explained</h2>
-    <p>Depending on your data and licensing, Recap shows one of the following:</p>
-    <table>
-      <tr><th>State</th><th>What it means</th></tr>
-      <tr><td><strong>Report</strong></td><td>Your written status report, grouped by epic, ready to edit and copy.</td></tr>
-      <tr><td><strong>“Nothing completed in the last 30&nbsp;days”</strong></td><td>No issues assigned to you reached a Done status in the window. Recap will not invent a report — complete some work and generate again.</td></tr>
-      <tr><td><strong>“Basic report” notice</strong></td><td>The AI writer was momentarily unavailable, so Recap produced a plain, deterministic summary of your completed work instead. Try Regenerate in a moment for the written version.</td></tr>
-      <tr><td><strong>“A subscription is required”</strong></td><td>The installation does not have an active Recap license. Ask your Jira admin to start a trial or subscribe. See <a class="inline" href="#licensing">Licensing &amp; billing</a>.</td></tr>
-      <tr><td><strong>Error message</strong></td><td>Something went wrong reaching Jira (for example a temporary network or permission issue). Try again; if it persists, contact <a class="inline" href="#support">support</a>.</td></tr>
-    </table>
-  </section>
+    <section id="states">
+      <h2 class="sec">Screen states explained</h2>
+      <p>Depending on your data and licensing, Recap shows one of the following:</p>
+      <table>
+        <tr><th>State</th><th>What it means</th></tr>
+        <tr><td><strong>Report</strong></td><td>Your written status report, grouped by epic, ready to edit and copy.</td></tr>
+        <tr><td><strong>“Nothing completed in the last 30&nbsp;days”</strong></td><td>No issues assigned to you reached a Done status in the window. Recap will not invent a report — complete some work and generate again.</td></tr>
+        <tr><td><strong>“Basic report” notice</strong></td><td>The AI writer was momentarily unavailable, so Recap produced a plain, deterministic summary of your completed work instead. Try Regenerate in a moment for the written version.</td></tr>
+        <tr><td><strong>“A subscription is required”</strong></td><td>The installation does not have an active Recap license. Ask your Jira admin to start a trial or subscribe. See <a class="inline" href="#licensing">Licensing &amp; billing</a>.</td></tr>
+        <tr><td><strong>Error message</strong></td><td>Something went wrong reaching Jira (for example a temporary network or permission issue). Try again; if it persists, contact <a class="inline" href="#support">support</a>.</td></tr>
+      </table>
+    </section>
 
-  <section id="copy">
-    <h2 class="sec">Copying your report</h2>
-    <p>
-      The report appears in an editable text box. To copy it: click inside the box, press
-      <code>Ctrl/Cmd&nbsp;+&nbsp;A</code> to select everything, then <code>Ctrl/Cmd&nbsp;+&nbsp;C</code>
-      to copy. You can edit the text first — tweak wording, remove a line, or add context —
-      before copying it wherever your updates live.
-    </p>
-  </section>
+    <section id="copy">
+      <h2 class="sec">Copying your report</h2>
+      <p>
+        The report appears in an editable text box. To copy it: click inside the box, press
+        <code>Ctrl/Cmd&nbsp;+&nbsp;A</code> to select everything, then <code>Ctrl/Cmd&nbsp;+&nbsp;C</code>
+        to copy. You can edit the text first — tweak wording, remove a line, or add context —
+        before copying it wherever your updates live.
+      </p>
+    </section>
 
-  <section id="data">
-    <h2 class="sec">Data &amp; permissions</h2>
-    <ul>
-      <li><strong>One permission.</strong> Recap requests only <code>read:jira-work</code> (read-only) and acts as you, so it can never surface an issue you could not already see.</li>
-      <li><strong>No storage.</strong> Recap has no database and uses no Forge storage. Reports are generated in memory and returned to your browser; nothing is kept.</li>
-      <li><strong>No third parties.</strong> Everything runs on Atlassian Forge, and report text is written using Atlassian-hosted AI. No data leaves the Atlassian platform.</li>
-    </ul>
-    <p>Full detail is in the <a class="inline" href="privacy.html">privacy policy</a>.</p>
-  </section>
+    <section id="data">
+      <h2 class="sec">Data &amp; permissions</h2>
+      <ul>
+        <li><strong>One permission.</strong> Recap requests only <code>read:jira-work</code> (read-only) and acts as you, so it can never surface an issue you could not already see.</li>
+        <li><strong>No storage.</strong> Recap has no database and uses no Forge storage. Reports are generated in memory and returned to your browser; nothing is kept.</li>
+        <li><strong>No third parties.</strong> Everything runs on Atlassian Forge, and report text is written using Atlassian-hosted AI. No data leaves the Atlassian platform.</li>
+      </ul>
+      <p>Full detail is in the <a class="inline" href="privacy.html">privacy policy</a>.</p>
+    </section>
 
-  <section id="licensing">
-    <h2 class="sec">Licensing &amp; billing</h2>
-    <p>
-      Recap is a paid app, licensed and billed through Atlassian (it appears on your regular
-      Atlassian bill). A free trial is available from the Marketplace so you can evaluate it
-      before subscribing. Pricing is per user per month, with volume discounts at higher tiers.
-    </p>
-    <p>
-      If an installation is not licensed, Recap shows “A subscription is required” instead of
-      generating a report. Licensing is managed by your Jira site administrator from
-      <strong>Manage apps</strong> in Jira administration.
-    </p>
-  </section>
+    <section id="licensing">
+      <h2 class="sec">Licensing &amp; billing</h2>
+      <p>
+        Recap is a paid app, licensed and billed through Atlassian (it appears on your regular
+        Atlassian bill). A free trial is available from the Marketplace so you can evaluate it
+        before subscribing. Pricing is per user per month, with volume discounts at higher tiers.
+      </p>
+      <p>
+        If an installation is not licensed, Recap shows “A subscription is required” instead of
+        generating a report. Licensing is managed by your Jira site administrator from
+        <strong>Manage apps</strong> in Jira administration.
+      </p>
+    </section>
 
-  <section id="troubleshooting">
-    <h2 class="sec">Troubleshooting</h2>
+    <section id="troubleshooting">
+      <h2 class="sec">Troubleshooting</h2>
 
-    <h3>My report is empty, but I did complete work.</h3>
-    <p>
-      Check that the issues were <strong>assigned to you</strong> and that they reached a
-      <strong>Done</strong> status (not just “In Review” or a custom status that is not mapped
-      to the Done category) within the last 30 days.
-    </p>
+      <h3>My report is empty, but I did complete work.</h3>
+      <p>
+        Check that the issues were <strong>assigned to you</strong> and that they reached a
+        <strong>Done</strong> status (not just “In Review” or a custom status that is not mapped
+        to the Done category) within the last 30 days.
+      </p>
 
-    <h3>Work is grouped under a project name, not an epic.</h3>
-    <p>
-      That is expected for issues that are not linked to an epic. Set an issue's
-      <strong>parent</strong> to an epic if you want it grouped under that epic instead.
-    </p>
+      <h3>Work is grouped under a project name, not an epic.</h3>
+      <p>
+        That is expected for issues that are not linked to an epic. Set an issue's
+        <strong>parent</strong> to an epic if you want it grouped under that epic instead.
+      </p>
 
-    <h3>I keep getting the “Basic report” notice.</h3>
-    <p>
-      This means the AI writer was temporarily unavailable and Recap used its built-in fallback
-      so you were not left empty-handed. Wait a moment and click Regenerate. If it persists for
-      an extended period, contact <a class="inline" href="#support">support</a>.
-    </p>
+      <h3>I keep getting the “Basic report” notice.</h3>
+      <p>
+        This means the AI writer was temporarily unavailable and Recap used its built-in fallback
+        so you were not left empty-handed. Wait a moment and click Regenerate. If it persists for
+        an extended period, contact <a class="inline" href="#support">support</a>.
+      </p>
 
-    <h3>It says a subscription is required.</h3>
-    <p>
-      The app is not licensed on this site. Ask your Jira administrator to start a trial or
-      subscribe from the Atlassian Marketplace.
-    </p>
-  </section>
+      <h3>It says a subscription is required.</h3>
+      <p>
+        The app is not licensed on this site. Ask your Jira administrator to start a trial or
+        subscribe from the Atlassian Marketplace.
+      </p>
+    </section>
 
-  <section id="versions">
-    <h2 class="sec">Version history</h2>
-    <table>
-      <tr><th>Version</th><th>Notes</th></tr>
-      <tr>
-        <td><strong>1.0</strong><br><span style="color:var(--muted)">Initial release</span></td>
-        <td>Generate a monthly status report from Jira work completed in the last 30 days, grouped by epic (or project), written with Atlassian's Forge LLMs. Includes a licensing gate and a deterministic fallback report when AI generation is temporarily unavailable.</td>
-      </tr>
-    </table>
-  </section>
+    <section id="versions">
+      <h2 class="sec">Version history</h2>
+      <table>
+        <tr><th>Version</th><th>Notes</th></tr>
+        <tr>
+          <td><strong>1.0</strong><br><span style="color:var(--muted)">Initial release</span></td>
+          <td>Generate a monthly status report from Jira work completed in the last 30 days, grouped by epic (or project), written with Atlassian's Forge LLMs. Includes a licensing gate and a deterministic fallback report when AI generation is temporarily unavailable.</td>
+        </tr>
+      </table>
+    </section>
 
-  <section id="support">
-    <h2 class="sec">Support</h2>
-    <p>
-      Questions, problems, or feedback? Email
-      <a class="inline" href="mailto:isogun21@gmail.com">isogun21@gmail.com</a>.
-      Best-effort support; typical response time is 1–2 business days.
-    </p>
-  </section>
+    <section id="support">
+      <h2 class="sec">Support</h2>
+      <p>
+        Questions, problems, or feedback? Email
+        <a class="inline" href="mailto:isogun21@gmail.com">isogun21@gmail.com</a>.
+        Best-effort support; typical response time is 1–2 business days.
+      </p>
+    </section>
+  </main>
 
-</main>
+</div>
 
 <footer>
-  <div class="wrap">
-    Recap — Monthly Status Reports for Jira ·
-    <a href="index.html">Home</a> ·
-    <a href="docs.html">Documentation</a> ·
-    <a href="privacy.html">Privacy</a><br>
-    An independent Atlassian Marketplace app by Isogun Labs. Not affiliated with or endorsed by Atlassian.
-  </div>
+  Recap — Monthly Status Reports for Jira ·
+  <a href="index.html">Home</a> ·
+  <a href="docs.html">Documentation</a> ·
+  <a href="privacy.html">Privacy</a><br>
+  An independent Atlassian Marketplace app by Isogun Labs. Not affiliated with or endorsed by Atlassian.
 </footer>
+
+<script>
+  // Highlight the sidebar link for the section currently in view.
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('#sidenav a'));
+    var sections = links.map(function (a) {
+      return document.querySelector(a.getAttribute('href'));
+    });
+    function onScroll() {
+      var pos = window.scrollY + 120;
+      var currentIndex = 0;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i] && sections[i].offsetTop <= pos) currentIndex = i;
+      }
+      links.forEach(function (a, i) {
+        a.classList.toggle('active', i === currentIndex);
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  })();
+</script>
 
 </body>
 </html>
