@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Recap — Privacy Policy</title>
-<meta name="description" content="Privacy policy for Recap, the Jira Cloud app. Recap stores nothing and runs entirely on Atlassian Forge.">
+<title>Recap — Security Policy</title>
+<meta name="description" content="Security policy for Recap, the Jira Cloud app. Read-only, single-scope, stores nothing, runs entirely on Atlassian Forge.">
 <style>
   :root {
     --amber: #B45309;
@@ -84,8 +84,8 @@
         <p>Monthly Status Reports for Jira</p>
       </div>
     </div>
-    <div class="page-title">Privacy Policy</div>
-    <div class="updated">Last updated: 17 July 2026</div>
+    <div class="page-title">Security Policy</div>
+    <div class="updated">Last updated: 20 July 2026</div>
     <div class="nav">
       <a href="index.html">Home</a>
       <a href="docs.html">Documentation</a>
@@ -97,57 +97,92 @@
 
 <main class="wrap">
 
-  <span class="pill">Runs on Atlassian · Stores nothing</span>
+  <span class="pill">Runs on Atlassian · Read-only · Stores nothing</span>
   <p class="lead">
-    Recap is a Jira Cloud app built on Atlassian Forge. This policy explains what data Recap
-    accesses and, just as importantly, what it does not do with it.
+    Recap is built to have the smallest possible security footprint. This page explains how
+    Recap authenticates, what it accesses, and how it handles data — see also the
+    <a href="privacy.html">Privacy Policy</a> for what data is read and why.
   </p>
 
   <section>
-    <h2>What Recap accesses</h2>
+    <h2>Authentication &amp; authorization</h2>
     <p>
-      When you click “Generate my report,” Recap reads Jira issues assigned to you that entered
-      a “Done” status in the last 30 days, using the single permission scope
-      <code>read:jira-work</code>. It reads only the fields needed to build your report: issue
-      key, summary, parent (epic) key and summary, project key and name, and the
-      resolution/status-change date. Recap acts as you, the requesting user — it can never see
-      or report on issues you could not already see yourself.
+      Recap authenticates entirely through Atlassian Forge using OAuth 2.0 — there is no
+      separate login, password, or API key for Recap itself. The app requests a single,
+      minimal permission scope, <code>read:jira-work</code>, and every Jira request runs as
+      the requesting user (Forge <code>asUser</code>). Recap can never see or report on an
+      issue the user could not already see themselves, and it holds no elevated or app-level
+      access beyond that one scope.
     </p>
   </section>
 
   <section>
-    <h2>What Recap stores</h2>
+    <h2>Data flow</h2>
     <p>
-      Nothing. Recap has no database and uses none of Forge’s storage services. All processing
-      happens in memory for the duration of a single click, and the generated report is returned
-      directly to your browser. Recap keeps no record of your reports, your issues, or your
-      account after the request completes.
+      When a user clicks “Generate my report,” a Forge resolver queries Jira
+      (<code>/rest/api/3/search/jql</code>) as that user, groups the returned issues in
+      memory, and sends a compact list of issue titles and epic/project names to Atlassian’s
+      own Forge LLMs API to generate the report text. The result is returned directly to the
+      user’s browser. Nothing is written to storage at any point in this flow.
     </p>
   </section>
 
   <section>
-    <h2>Where your data goes</h2>
+    <h2>Hosting &amp; subprocessors</h2>
     <p>
-      Nowhere outside Atlassian. Recap runs entirely on Atlassian Forge. Report text is
-      generated using Atlassian’s own Forge LLMs API (Atlassian-hosted AI models) — prompts are
-      processed within Atlassian’s platform. Recap makes no calls to any third-party service,
-      uses no external analytics, and has no servers of its own.
+      Recap runs entirely on Atlassian Forge — there are no partner-operated servers,
+      databases, or third-party subprocessors. AI text generation uses Atlassian-hosted Forge
+      LLMs; prompts are processed inside Atlassian’s platform and never leave it. Recap makes
+      no network calls to any non-Atlassian domain, and uses no external analytics or logging
+      services.
     </p>
   </section>
 
   <section>
-    <h2>Data retention and deletion</h2>
+    <h2>Data storage &amp; encryption</h2>
     <p>
-      Since Recap stores nothing, there is nothing to retain or delete. Uninstalling Recap
-      leaves no residual data behind, because none was ever kept.
+      Recap has no database and uses none of Forge’s storage services (no Key-Value Store, no
+      SQL, no entity storage). All processing happens in memory for the duration of a single
+      invocation, so there is no data at rest to encrypt. All requests use the Forge
+      platform’s TLS-encrypted channels in transit.
     </p>
   </section>
 
   <section>
-    <h2>Contact</h2>
+    <h2>Logging</h2>
     <p>
-      Questions about this policy or Recap’s data handling can be sent to
-      <a href="mailto:support@isogunlabs.com">support@isogunlabs.com</a>.
+      Recap writes only operational logs through Forge’s platform logging — for example, a
+      line noting that AI generation fell back to the built-in template. Logs do not contain
+      full issue content beyond what’s needed to diagnose a failure, and never contain
+      credentials.
+    </p>
+  </section>
+
+  <section>
+    <h2>Vulnerability &amp; dependency management</h2>
+    <p>
+      Recap pins Atlassian Forge SDK dependencies to released, non-prerelease versions and
+      adds no third-party runtime dependencies of its own. Updates are reviewed and redeployed
+      through the Forge CLI.
+    </p>
+  </section>
+
+  <section>
+    <h2>Access control</h2>
+    <p>
+      Recap is built and operated by a single developer. No systems holding customer data are
+      operated by the partner, because none exist — Recap stores nothing. Source and
+      deployment access is limited to the developer’s Atlassian developer account, protected
+      with two-factor authentication.
+    </p>
+  </section>
+
+  <section>
+    <h2>Reporting a security issue</h2>
+    <p>
+      If you believe you’ve found a security vulnerability in Recap, please report it to
+      <a href="mailto:support@isogunlabs.com">support@isogunlabs.com</a>. We aim to
+      acknowledge reports promptly and will work with you on responsible disclosure.
     </p>
   </section>
 
@@ -158,7 +193,7 @@
     Recap — Monthly Status Reports for Jira ·
     <a href="index.html">Home</a> ·
     <a href="docs.html">Documentation</a> ·
-    <a href="security.html">Security</a><br>
+    <a href="privacy.html">Privacy</a><br>
     An independent Atlassian Marketplace app by Isogun Labs. Not affiliated with or endorsed by Atlassian.
   </div>
 </footer>
