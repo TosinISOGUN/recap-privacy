@@ -15,6 +15,8 @@
 <meta property="og:description" content="Turn completed Jira work into a written monthly status report in one click. Runs entirely on Atlassian and stores nothing.">
 <meta property="og:url" content="https://recap.isogunlabs.com/">
 <meta property="og:image" content="https://recap.isogunlabs.com/assets/img/recap-report.png">
+<meta property="og:image:width" content="1522">
+<meta property="og:image:height" content="907">
 <meta property="og:site_name" content="Recap">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@isogunlabs">
@@ -33,6 +35,24 @@
 {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Isogun Labs",
+      "url": "https://isogunlabs.com/",
+      "logo": "https://recap.isogunlabs.com/assets/img/recap-logo-144.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/isogun-labs",
+        "https://x.com/isogunlabs",
+        "https://www.instagram.com/isogunlabs/",
+        "https://www.youtube.com/@isogun_labs"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Recap", "item": "https://recap.isogunlabs.com/" }
+      ]
+    },
     {
       "@type": "SoftwareApplication",
       "name": "Recap — Monthly Status Reports for Jira",
