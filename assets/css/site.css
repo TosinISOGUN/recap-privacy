@@ -34,6 +34,7 @@ body { margin:0; font-family:var(--ff); color:var(--ink); background:var(--bg); 
 a { color:inherit; }
 img { max-width:100%; display:block; }
 .wrap { max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+.wrap-wide { max-width:1360px; }
 :focus-visible { outline:2px solid var(--amber-400); outline-offset:3px; border-radius:4px; }
 h1,h2,h3 { letter-spacing:-.02em; }
 .amber { color:var(--amber-400); }
@@ -147,8 +148,8 @@ section.block { padding:80px 0; }
 
 /* principle / feature grid */
 .principles { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
-.principle { background:var(--white); border:1px solid var(--line); border-radius:8px; padding:26px 22px; box-shadow:var(--shadow); transition:transform .2s, box-shadow .25s, border-color .2s; }
-.principle:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--amber-200); }
+.principle { background:var(--white); border-radius:8px; padding:26px 22px; box-shadow:var(--shadow); transition:transform .2s, box-shadow .25s; }
+.principle:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
 .principle .ic { width:46px; height:46px; border-radius:8px; display:grid; place-items:center; background:linear-gradient(140deg,var(--amber-50),var(--amber-100)); color:var(--amber-600); margin-bottom:16px; }
 .principle .ic svg { width:23px; height:23px; }
 .principle h3 { margin:0 0 8px; font-size:1.02rem; font-weight:800; color:var(--ink); }
@@ -156,8 +157,8 @@ section.block { padding:80px 0; }
 
 /* board → report split */
 .split { display:grid; grid-template-columns:1fr auto 1fr; gap:24px; align-items:center; }
-.split-shot { border-radius:8px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-lg); background:var(--white); }
-.split-shot img { width:100%; display:block; aspect-ratio:1523/907; object-fit:contain; }
+.split-shot { border-radius:8px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-lg); background:var(--white); aspect-ratio:1521/907; }
+.split-shot img { width:100%; height:100%; display:block; object-fit:cover; object-position:top; }
 .split-arrow { color:var(--amber-400); flex:none; }
 .split-arrow svg { width:30px; height:30px; }
 .split-label { font-size:.78rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-bottom:10px; text-align:center; }
