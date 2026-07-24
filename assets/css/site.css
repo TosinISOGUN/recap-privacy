@@ -155,13 +155,17 @@ section.block { padding:80px 0; }
 .principle p { margin:0; color:var(--body); font-size:.92rem; }
 
 /* board → report split */
-.split { display:flex; flex-direction:column; align-items:center; gap:22px; max-width:920px; margin:0 auto; }
-.split > div { width:100%; }
-.split-shot { border-radius:8px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-lg); }
-.split-shot img { width:100%; display:block; }
-.split-arrow { color:var(--amber-400); flex:none; transform:rotate(90deg); }
+.split { display:grid; grid-template-columns:1fr auto 1fr; gap:24px; align-items:center; }
+.split-shot { border-radius:8px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-lg); background:var(--white); }
+.split-shot img { width:100%; display:block; aspect-ratio:1523/907; object-fit:contain; }
+.split-arrow { color:var(--amber-400); flex:none; }
 .split-arrow svg { width:30px; height:30px; }
 .split-label { font-size:.78rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-bottom:10px; text-align:center; }
+
+@media (max-width:680px){
+  .split { grid-template-columns:1fr; }
+  .split-arrow { transform:rotate(90deg); margin:0 auto; }
+}
 
 /* FAQ accordion */
 .faq-list { max-width:760px; margin:0 auto; }
