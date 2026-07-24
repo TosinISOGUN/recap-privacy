@@ -3,195 +3,347 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Recap — Monthly Status Reports for Jira · Support</title>
-<meta name="description" content="Support and help for Recap, the Jira Cloud app that turns your completed work into a written monthly status report in one click.">
-<style>
-  :root {
-    --amber: #B45309;
-    --amber-light: #D97706;
-    --ink: #1F2937;
-    --muted: #6B7280;
-    --line: #E5E7EB;
-    --bg: #FFFFFF;
-    --panel: #FBF7F2;
-    --green: #15803D;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.6;
-  }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
-  header {
-    background: linear-gradient(135deg, var(--amber-light), #92400E);
-    color: #fff;
-    padding: 56px 0 48px;
-  }
-  .brand { display: flex; align-items: center; gap: 16px; }
-  .brand svg { width: 56px; height: 56px; border-radius: 14px; flex: none; }
-  .brand h1 { font-size: 1.35rem; margin: 0; font-weight: 700; }
-  .brand p { margin: 2px 0 0; opacity: 0.9; font-size: 0.9rem; }
-  .tagline { font-size: 1.5rem; font-weight: 700; margin: 28px 0 0; max-width: 620px; }
-  .nav { margin-top: 20px; font-size: 0.9rem; }
-  .nav a { color: #fff; opacity: 0.92; text-decoration: none; margin-right: 18px; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px; }
-  .nav a:hover { opacity: 1; }
-  main { padding: 48px 0 24px; }
-  h2 { font-size: 1.25rem; margin: 40px 0 12px; }
-  h2:first-child { margin-top: 0; }
-  section { border-top: 1px solid var(--line); padding-top: 28px; margin-top: 28px; }
-  section:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
-  ol.steps { padding-left: 0; list-style: none; counter-reset: step; }
-  ol.steps li {
-    counter-increment: step;
-    position: relative;
-    padding: 12px 0 12px 52px;
-    border-bottom: 1px solid var(--line);
-  }
-  ol.steps li:last-child { border-bottom: 0; }
-  ol.steps li::before {
-    content: counter(step);
-    position: absolute; left: 0; top: 12px;
-    width: 34px; height: 34px;
-    background: var(--panel); color: var(--amber);
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    display: grid; place-items: center;
-    font-weight: 700;
-  }
-  .faq { margin-top: 8px; }
-  .faq h3 { font-size: 1rem; margin: 22px 0 4px; }
-  .faq p { margin: 0 0 4px; color: var(--ink); }
-  .contact {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 24px;
-    margin-top: 12px;
-  }
-  .contact a { color: var(--amber); font-weight: 600; text-decoration: none; }
-  .contact a:hover { text-decoration: underline; }
-  .pill {
-    display: inline-block; font-size: 0.8rem; font-weight: 600;
-    color: var(--green); background: #E7F4EC; border-radius: 999px;
-    padding: 3px 12px; margin-bottom: 12px;
-  }
-  footer {
-    border-top: 1px solid var(--line);
-    color: var(--muted);
-    font-size: 0.85rem;
-    padding: 28px 0 48px;
-    margin-top: 40px;
-  }
-  footer a { color: var(--muted); }
-</style>
+<meta name="color-scheme" content="light">
+<meta name="author" content="Isogun Labs">
+<meta name="theme-color" content="#211708">
+<title>Recap — Jira Status Report App | One-Click Monthly Reports</title>
+<meta name="description" content="Recap turns your completed Jira work into a written monthly status report in one click. Runs entirely on Atlassian, and stores nothing.">
+<link rel="canonical" href="https://recap.isogunlabs.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Recap — Jira Status Report App">
+<meta property="og:description" content="Turn completed Jira work into a written monthly status report in one click. Runs entirely on Atlassian and stores nothing.">
+<meta property="og:url" content="https://recap.isogunlabs.com/">
+<meta property="og:image" content="https://recap.isogunlabs.com/assets/img/recap-report.png">
+<meta property="og:site_name" content="Recap">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@isogunlabs">
+<meta name="twitter:title" content="Recap — Jira Status Report App">
+<meta name="twitter:description" content="Turn completed Jira work into a written monthly status report in one click. Runs entirely on Atlassian and stores nothing.">
+<meta name="twitter:image" content="https://recap.isogunlabs.com/assets/img/recap-report.png">
+
+<link rel="icon" href="/assets/img/recap-logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/recap-logo-144.png" sizes="144x144" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/recap-logo-144.png">
+
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/dm-sans-latin.woff2" crossorigin>
+<link rel="preload" as="image" fetchpriority="high" href="/assets/img/recap-idle.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Recap — Monthly Status Reports for Jira",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Atlassian Jira Cloud",
+      "url": "https://recap.isogunlabs.com/",
+      "installUrl": "https://marketplace.atlassian.com/2146687861",
+      "downloadUrl": "https://marketplace.atlassian.com/2146687861",
+      "image": "https://recap.isogunlabs.com/assets/img/recap-report.png",
+      "description": "Recap turns your completed Jira work from the last 30 days into a written monthly status report in one click — grouped by epic, ready to paste into a status update or performance review. Runs entirely on Atlassian and stores nothing.",
+      "publisher": { "@type": "Organization", "name": "Isogun Labs", "url": "https://isogunlabs.com/" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question", "name": "Which work does Recap include?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Issues assigned to you that moved to a \"Done\" status in the last 30 days. The window is fixed at 30 days." }
+        },
+        {
+          "@type": "Question", "name": "It says “Nothing completed in the last 30 days.”",
+          "acceptedAnswer": { "@type": "Answer", "text": "That means no issues assigned to you reached a Done status in that window. Recap won’t invent a report — complete some work and generate again." }
+        },
+        {
+          "@type": "Question", "name": "What data does Recap access or store?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It reads only your completed issues’ titles, epic or project, and completion date, using a single read-only permission — and it stores nothing." }
+        },
+        {
+          "@type": "Question", "name": "Why does it group work under a project name instead of an epic?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Issues that aren’t linked to an epic are grouped under their project instead, so nothing is dropped." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
 
-<header>
+<div class="util">
   <div class="wrap">
-    <div class="brand">
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#FDE7C7"/><stop offset="1" stop-color="#F5C892"/>
-          </linearGradient>
-        </defs>
-        <rect width="512" height="512" rx="96" fill="#FFFFFF"/>
-        <path d="M146,96 H330 L366,132 V396 H146 Z" fill="#B45309"/>
-        <path d="M330,96 L366,132 H330 Z" fill="#7C3A08"/>
-        <rect x="174" y="186" width="164" height="18" rx="9" fill="#FDE7C7"/>
-        <rect x="174" y="228" width="164" height="18" rx="9" fill="#E8C39E"/>
-        <rect x="174" y="270" width="100" height="18" rx="9" fill="#E8C39E"/>
-        <circle cx="360" cy="390" r="52" fill="#15803D" stroke="#FFFFFF" stroke-width="10"/>
-        <polyline points="336,392 354,410 388,368" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div>
-        <h1>Recap</h1>
-        <p>Monthly Status Reports for Jira</p>
-      </div>
+    <div class="u-left">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+      <a href="https://isogunlabs.com/">Part of Isogun Labs</a>
     </div>
-    <p class="tagline">Turn completed Jira work into a written status update. One click. No chasing, no nagging, no blank-page Monday.</p>
-    <div class="nav">
-      <a href="index.html">Home</a>
+    <div class="u-right"><a href="mailto:support@isogunlabs.com">support@isogunlabs.com</a></div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="/">
+      <img src="/assets/img/recap-logo-144.png" alt="" width="36" height="36">
+      <b>Recap</b>
+    </a>
+    <div class="nav-mid">
+      <a href="#how">How it works</a>
       <a href="docs.html">Documentation</a>
       <a href="privacy.html">Privacy</a>
       <a href="security.html">Security</a>
     </div>
+    <div class="nav-right">
+      <a class="btn btn-amber btn-sm" href="https://marketplace.atlassian.com/2146687861" target="_blank" rel="noopener">Get it on Marketplace</a>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="drawer-overlay"></div>
+<aside class="drawer" id="mobile-drawer">
+  <div class="d-head">
+    <a class="logo" href="/">
+      <img src="/assets/img/recap-logo-144.png" alt="" width="32" height="32">
+      <b>Recap</b>
+    </a>
+    <button class="d-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <nav>
+    <a class="d-link" href="#how">How it works</a>
+    <a class="d-link" href="docs.html">Documentation</a>
+    <a class="d-link" href="privacy.html">Privacy</a>
+    <a class="d-link" href="security.html">Security</a>
+  </nav>
+  <a class="btn btn-amber" href="https://marketplace.atlassian.com/2146687861" target="_blank" rel="noopener">Get it on Marketplace</a>
+</aside>
+
+<header class="hero">
+  <div class="hero-facets" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span> Now live on the Atlassian Marketplace</span>
+      <h1>The Jira status report you didn't have to write.</h1>
+      <p class="lead">Recap reads the work you already completed in the last 30 days and writes it up in plain English — grouped by epic, ready to paste into a status update, a 1:1, or a performance review. One click.</p>
+      <div class="hero-actions">
+        <a class="btn btn-amber" href="https://marketplace.atlassian.com/2146687861" target="_blank" rel="noopener">Get it on Marketplace
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn-text" href="#how">See how it works
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <ul class="trust-chips">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 5 3.4 8.5 7.5 9 4.1-.5 7.5-4 7.5-9V6L12 3Z"/></svg> Runs on Atlassian</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 12h6M3 12l3-3M3 12l3 3"/></svg> Stores nothing</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> One read-only permission</li>
+      </ul>
+    </div>
+
+    <div class="showcase-frame">
+      <div class="mock">
+        <div class="bar" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i><span class="url">Recap · Jira</span></div>
+        <div class="shot-stage">
+          <img class="active" src="/assets/img/recap-idle.png" width="1523" height="943" alt="Recap's idle screen in Jira, showing a single Generate my report button." loading="eager" fetchpriority="high" decoding="async">
+          <img src="/assets/img/recap-report.png" width="1522" height="907" alt="Recap showing a generated status report grouped under Website Revamp and Documentation, ready to copy.">
+          <img src="/assets/img/recap-empty.png" width="1519" height="881" alt="Recap's empty state, saying nothing was completed in the last 30 days.">
+        </div>
+      </div>
+      <div class="shot-tabs">
+        <button class="active" type="button">Idle</button>
+        <button type="button">Generated</button>
+        <button type="button">No new work</button>
+      </div>
+    </div>
   </div>
 </header>
 
-<main class="wrap">
-
-  <section>
-    <span class="pill">Runs on Atlassian</span>
-    <h2>What Recap does</h2>
-    <p>
-      Recap reads the Jira issues assigned to you that were completed in the last 30 days,
-      groups them by epic (or project), and writes a short, plain-language status report you can
-      paste straight into a status update, a 1:1 doc, or a performance review. No invented
-      metrics, no filler — just an honest summary of what actually shipped, in words.
-    </p>
-    <p>
-      It runs entirely on Atlassian Forge. The report is written using Atlassian's own AI, so
-      your data never leaves the Atlassian platform, and Recap stores nothing.
-    </p>
-  </section>
-
-  <section>
-    <h2>How to use it</h2>
-    <ol class="steps">
-      <li>In Jira, open <strong>Apps</strong> in the top navigation and select <strong>Recap</strong>.</li>
-      <li>Click <strong>Generate my report</strong>.</li>
-      <li>Your report appears in a text box. Click into it, select all, and copy — edit anything first if you like.</li>
-    </ol>
-  </section>
-
-  <section>
-    <h2>Frequently asked questions</h2>
-    <div class="faq">
-      <h3>Which work does Recap include?</h3>
-      <p>Issues assigned to you that moved to a “Done” status in the last 30 days. The window is fixed at 30 days.</p>
-
-      <h3>It says “Nothing completed in the last 30 days.”</h3>
-      <p>That means no issues assigned to you reached a Done status in that window. Recap won’t invent a report — complete some work and generate again.</p>
-
-      <h3>It showed a “Basic report” notice.</h3>
-      <p>If the AI writer is momentarily unavailable, Recap falls back to a plain summary of your completed work so you’re never left empty-handed. Try again in a moment for the written version.</p>
-
-      <h3>Why does it group work under a project name instead of an epic?</h3>
-      <p>Issues that aren’t linked to an epic (no parent) are grouped under their project instead, so nothing is dropped.</p>
-
-      <h3>What data does Recap access or store?</h3>
-      <p>It reads only your completed issues’ titles, epic/project, and completion date, using a single read-only permission — and it stores nothing. See the <a href="privacy.html">privacy policy</a> for detail.</p>
-
-      <h3>How do I copy the report?</h3>
-      <p>Click inside the report box, press Ctrl/Cmd&nbsp;+&nbsp;A to select all, then Ctrl/Cmd&nbsp;+&nbsp;C to copy.</p>
+<section class="block reveal" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">How it works</div>
+      <h2>From <span class="amber">completed work</span> to a written report</h2>
+      <p>No setup, no date pickers, no dashboard to babysit — Recap reads what's already true in Jira and writes it up.</p>
     </div>
-  </section>
-
-  <section>
-    <h2>Get support</h2>
-    <div class="contact">
-      <p style="margin-top:0">Questions, problems, or feedback? Email us:</p>
-      <p><a href="mailto:support@isogunlabs.com">support@isogunlabs.com</a></p>
-      <p style="margin-bottom:0; color:var(--muted); font-size:0.9rem">Best-effort support. Typical response time: 1–2 business days.</p>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="num">1</div>
+        <div class="flow-shot"><img src="/assets/img/board-done.png" width="1521" height="907" alt="A Jira board's Done column showing four completed tickets." loading="lazy" decoding="async"></div>
+        <h3>You complete work in Jira</h3>
+        <p>Nothing to change about how your team already works — Recap reads what's already there.</p>
+      </div>
+      <div class="flow-arrow" style="left:calc(33.33% - 14px);" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="flow-step">
+        <div class="num">2</div>
+        <div class="flow-shot"><img src="/assets/img/recap-idle.png" width="1523" height="943" alt="Clicking Generate my report inside Recap in Jira." loading="lazy" decoding="async"></div>
+        <h3>Click Generate my report</h3>
+        <p>Recap gathers your completed issues from the last 30 days — no configuration needed.</p>
+      </div>
+      <div class="flow-arrow" style="left:calc(66.66% - 14px);" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="flow-step">
+        <div class="num">3</div>
+        <div class="flow-shot"><img src="/assets/img/recap-report.png" width="1522" height="907" alt="A finished status report generated by Recap, grouped by epic." loading="lazy" decoding="async"></div>
+        <h3>Copy your written report</h3>
+        <p>Plain-language prose, grouped by epic, ready to paste anywhere your updates live.</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-</main>
+<section class="block reveal" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Real data, real report</div>
+      <h2>Your board already has the answer</h2>
+      <p>This is an actual Recap report generated from an actual Jira board — nothing staged, nothing invented.</p>
+    </div>
+    <div class="split">
+      <div>
+        <div class="split-label">Your Jira board</div>
+        <div class="split-shot"><img src="/assets/img/board-done.png" width="1521" height="907" alt="Jira Done column with tickets: migrate billing service to v2 API, write onboarding documentation, optimize dashboard loading performance, fix pagination bug in search results." loading="lazy" decoding="async"></div>
+      </div>
+      <div class="split-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div>
+        <div class="split-label">Recap's report</div>
+        <div class="split-shot"><img src="/assets/img/recap-report.png" width="1522" height="907" alt="Recap's written report describing the same four tickets in plain English, grouped by Website Revamp and Documentation." loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Why it's built this way</div>
+      <h2>Honest by default</h2>
+      <p>No invented metrics, no third-party servers, no dashboard you have to maintain.</p>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></div>
+        <h3>One click</h3>
+        <p>No settings, no date range to pick. Generate my report, and you have a draft.</p>
+      </div>
+      <div class="principle">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></div>
+        <h3>Nothing invented</h3>
+        <p>The report reflects exactly what your issue titles say — no fabricated metrics or achievements.</p>
+      </div>
+      <div class="principle">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z"/></svg></div>
+        <h3>Runs on Atlassian</h3>
+        <p>Built on Forge, using Atlassian's own AI. Nothing calls out to a third-party server.</p>
+      </div>
+      <div class="principle">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 12h6M3 12l3-3M3 12l3 3"/></svg></div>
+        <h3>Stores nothing</h3>
+        <p>No database, no history kept. Every report is generated fresh and returned to your browser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block reveal" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">FAQ</div>
+      <h2>Questions people actually ask</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Which work does Recap include?
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Issues assigned to you that moved to a "Done" status in the last 30 days. The window is fixed at 30 days.</p>
+      </details>
+      <details class="faq-item">
+        <summary>It says "Nothing completed in the last 30 days."
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>That means no issues assigned to you reached a Done status in that window. Recap won't invent a report — complete some work and generate again.</p>
+      </details>
+      <details class="faq-item">
+        <summary>It showed a "Basic report" notice.
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>If the AI writer is momentarily unavailable, Recap falls back to a plain summary of your completed work so you're never left empty-handed. Try again in a moment for the written version.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Why does it group work under a project name instead of an epic?
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Issues that aren't linked to an epic (no parent) are grouped under their project instead, so nothing is dropped.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What data does Recap access or store?
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>It reads only your completed issues' titles, epic or project, and completion date, using a single read-only permission — and it stores nothing. See the <a href="privacy.html">privacy policy</a> for detail.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I copy the report?
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Click inside the report box, press Ctrl/Cmd&nbsp;+&nbsp;A to select all, then Ctrl/Cmd&nbsp;+&nbsp;C to copy.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta reveal">
+  <div class="cta-facets" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2>Stop writing status reports from scratch</h2>
+    <p>Recap is free to try from the Atlassian Marketplace — install it on your Jira Cloud site and generate your first report in under a minute.</p>
+    <div class="cta-actions">
+      <a class="btn btn-amber" href="https://marketplace.atlassian.com/2146687861" target="_blank" rel="noopener">Get it on Marketplace
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost-light" href="mailto:support@isogunlabs.com">Talk with us</a>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
-    Recap — Monthly Status Reports for Jira ·
-    <a href="docs.html">Documentation</a> ·
-    <a href="privacy.html">Privacy policy</a> ·
-    <a href="security.html">Security</a><br>
-    An independent Atlassian Marketplace app by Isogun Labs. Not affiliated with or endorsed by Atlassian.
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="logo" href="/">
+          <img src="/assets/img/recap-logo-144.png" alt="" width="32" height="32">
+          <b>Recap</b>
+        </a>
+        <p>Monthly status reports for Jira, written from the work you actually completed.</p>
+      </div>
+      <div class="foot-links">
+        <a href="https://marketplace.atlassian.com/2146687861" target="_blank" rel="noopener">Marketplace</a>
+        <a href="docs.html">Documentation</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="security.html">Security</a>
+        <a href="https://isogunlabs.com/">Isogun Labs</a>
+        <a href="mailto:support@isogunlabs.com">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      Recap is an independent Atlassian Marketplace app by <a href="https://isogunlabs.com/">Isogun Labs</a>. Not affiliated with or endorsed by Atlassian.<br>
+      © 2026 Isogun Labs. All rights reserved.
+    </div>
   </div>
 </footer>
 
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>
