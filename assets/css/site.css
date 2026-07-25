@@ -195,6 +195,7 @@ footer .wrap { padding:52px 24px 30px; }
 .foot-top { display:flex; flex-wrap:wrap; justify-content:space-between; gap:32px; margin-bottom:32px; }
 .foot-brand .logo { margin-bottom:14px; }
 .foot-brand p { color:#A99C82; font-size:.9rem; max-width:34ch; margin:0; }
+.foot-brand .partner-badge { display:block; height:26px; width:auto; margin-top:18px; opacity:.9; }
 .foot-links { display:flex; flex-wrap:wrap; gap:10px 26px; }
 .foot-links a { color:#E3D6C0; text-decoration:none; font-size:.94rem; font-weight:600; }
 .foot-links a:hover { color:#fff; }
