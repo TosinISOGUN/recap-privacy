@@ -40,35 +40,6 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  // Hero screenshot showcase: tabbed + auto-rotating
-  var stage = document.querySelector('.shot-stage');
-  var tabs = document.querySelector('.shot-tabs');
-  if (stage && tabs) {
-    var shots = Array.prototype.slice.call(stage.querySelectorAll('img'));
-    var buttons = Array.prototype.slice.call(tabs.querySelectorAll('button'));
-    var index = 0;
-    var timer = null;
-    var show = function (i) {
-      index = i;
-      shots.forEach(function (img, n) { img.classList.toggle('active', n === i); });
-      buttons.forEach(function (b, n) { b.classList.toggle('active', n === i); });
-    };
-    var next = function () { show((index + 1) % shots.length); };
-    var startAuto = function () {
-      if (reduce) return;
-      stopAuto();
-      timer = setInterval(next, 2600);
-    };
-    var stopAuto = function () { if (timer) { clearInterval(timer); timer = null; } };
-    buttons.forEach(function (b, n) {
-      b.addEventListener('click', function () { show(n); startAuto(); });
-    });
-    stage.addEventListener('mouseenter', stopAuto);
-    stage.addEventListener('mouseleave', startAuto);
-    show(0);
-    startAuto();
-  }
-
   // Sidebar active-section highlight (docs page)
   var sidenav = document.getElementById('sidenav');
   if (sidenav) {

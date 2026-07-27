@@ -122,12 +122,8 @@ body.drawer-open { overflow:hidden; }
 .mock .bar i { width:10px; height:10px; border-radius:50%; }
 .mock .bar .r{background:#F87171;} .mock .bar .y{background:#FBBF24;} .mock .bar .g{background:#34D399;}
 .mock .bar .url { margin-left:8px; font-size:.72rem; color:var(--body); background:var(--white); border:1px solid var(--line); border-radius:6px; padding:4px 12px; }
-.shot-stage { position:relative; aspect-ratio:1523/943; background:var(--white); }
-.shot-stage img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top left; opacity:0; transition:opacity .5s ease; }
-.shot-stage img.active { opacity:1; }
-.shot-tabs { display:flex; gap:8px; margin-top:16px; justify-content:center; }
-.shot-tabs button { border:0; background:rgba(255,255,255,.14); color:#F5E9D5; font-size:.82rem; font-weight:700; padding:8px 14px; border-radius:999px; cursor:pointer; transition:background .2s, color .2s; }
-.shot-tabs button.active, .shot-tabs button:hover { background:var(--amber-400); color:#fff; }
+.video-embed { position:relative; width:100%; aspect-ratio:16/9; background:var(--panel); }
+.video-embed iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
 
 /* section scaffolding */
 section.block { padding:80px 0; }
@@ -146,12 +142,6 @@ section.block { padding:80px 0; }
 .flow-step p { margin:0; color:var(--body); font-size:.92rem; line-height:1.55; }
 .flow-arrow { position:absolute; top:56px; width:28px; height:28px; color:var(--amber-200); }
 .flow-arrow svg { width:100%; height:100%; }
-
-.how-video { max-width:820px; margin:52px auto 0; }
-.how-video .video-embed { position:relative; width:100%; aspect-ratio:16/9; background:var(--panel); }
-.how-video .video-embed iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
-.how-video-caption { margin:16px 0 0; text-align:center; color:var(--body); font-size:.95rem; }
-.how-video-caption strong { color:var(--ink); }
 
 /* principle / feature grid */
 .principles { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
