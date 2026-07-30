@@ -206,7 +206,7 @@ footer .wrap { padding:52px 24px 30px; }
 .page-hero .wrap { padding:52px 24px 44px; }
 .page-hero .page-title { font-size:clamp(1.7rem,3.4vw,2.3rem); font-weight:800; margin:22px 0 4px; }
 .page-hero .updated { opacity:.85; font-size:.9rem; }
-.legal { padding:44px 0 24px; }
+.legal { padding-top:44px; padding-bottom:24px; }
 .legal .lead { font-size:1.05rem; color:var(--body); }
 .legal section { border-top:1px solid var(--line); padding-top:24px; margin-top:24px; }
 .legal h2 { font-size:1.2rem; margin:0 0 8px; }
